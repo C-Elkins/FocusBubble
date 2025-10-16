@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusBubble Dashboard</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bubble: {
+                            50: '#f0f4ff',
+                            100: '#e0e9ff',
+                            200: '#c7d6fe',
+                            300: '#a5b8fc',
+                            400: '#8191f8',
+                            500: '#667eea',
+                            600: '#5568d3',
+                            700: '#4653b0',
+                            800: '#3a4490',
+                            900: '#323b76',
+                        }
+                    },
+                    boxShadow: {
+                        'bubble': '0 10px 40px rgba(102, 126, 234, 0.15)',
+                        'bubble-lg': '0 20px 60px rgba(102, 126, 234, 0.2)',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Recharts -->
+    <script src="https://unpkg.com/recharts@2.12.0/dist/Recharts.js"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
+    
+    <!-- Babel Standalone for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Floating bubbles animation */
+        .bubble-decoration {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .bubble-1 {
+            width: 200px;
+            height: 200px;
+            top: 5%;
+            right: 10%;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .bubble-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            left: 5%;
+            animation: float 5s ease-in-out infinite 1s;
+        }
+        
+        .bubble-3 {
+            width: 100px;
+            height: 100px;
+            top: 40%;
+            right: 5%;
+            animation: float 6s ease-in-out infinite 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Glassmorphism cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Loading shimmer */
+        .shimmer {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            background-size: 1000px 100%;
+            animation: shimmer 2s linear infinite;
+        }
+        
+        /* Chart container styling */
+        .recharts-wrapper {
+            margin: 0 auto;
+        }
+        
+        .recharts-surface {
+            overflow: visible;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bubble-decoration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bubble-decoration bubble-1"></div>
+    <div class="bubble-decoration bubble-2"></div>
+    <div class="bubble-decoration bubble-3"></div>
+    
+    <div id="root"></div>
+    
+    <script type="text/babel" src="dashboard.js"></script>
+</body>
+</html>

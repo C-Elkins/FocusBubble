@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusBubble - Focus Timer</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bubble: {
+              50: '#f0f4ff',
+              100: '#e0eaff',
+              200: '#c7d9ff',
+              300: '#a5c0ff',
+              400: '#7e9eff',
+              500: '#667eea',
+              600: '#5568d3',
+              700: '#4553b8',
+              800: '#3a4694',
+              900: '#323b76',
+            }
+          },
+          boxShadow: {
+            'bubble': '0 10px 40px rgba(102, 126, 234, 0.15)',
+            'bubble-lg': '0 20px 60px rgba(102, 126, 234, 0.25)',
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Styles -->
+  <style>
+    body {
+      width: 380px;
+      min-height: 520px;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    /* Bubble animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .bubble-bg {
+      position: fixed;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .bubble-1 {
+      width: 100px;
+      height: 100px;
+      top: -30px;
+      right: -30px;
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .bubble-2 {
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      left: -20px;
+      animation: float 5s ease-in-out infinite 1s;
+    }
+    
+    .bubble-3 {
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      right: -10px;
+      animation: float 3s ease-in-out infinite 2s;
+    }
+    
+    /* Smooth transitions */
+    * {
+      transition-property: color, background-color, border-color, transform, box-shadow;
+      transition-duration: 200ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Progress ring */
+    .progress-ring circle {
+      transition: stroke-dashoffset 0.3s ease;
+    }
+    
+    /* Hide scrollbar but keep functionality */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <!-- Root element for React -->
+  <div id="root"></div>
+  
+  <!-- Floating bubble decorations -->
+  <div class="bubble-bg bubble-1"></div>
+  <div class="bubble-bg bubble-2"></div>
+  <div class="bubble-bg bubble-3"></div>
+  
+  <!-- React and ReactDOM from CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Framer Motion from CDN -->
+  <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
+  
+  <!-- Babel Standalone for JSX transformation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- Main React App -->
+  <script type="text/babel" src="popup.jsx"></script>
+</body>
+</html>
+      <button class="preset-btn" data-duration="15">15m</button>
+      <button class="preset-btn" data-duration="25">25m</button>
+      <button class="preset-btn" data-duration="45">45m</button>
+      <button class="preset-btn" data-duration="60">60m</button>
+    </div>
+
+    <!-- Custom Duration -->
+    <div class="custom-duration">
+      <input
+        type="number"
+        id="customDuration"
+        min="1"
+        max="120"
+        placeholder="Custom (min)"
+      />
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="control-btn primary" id="startBtn">
+        <span id="startIcon">▶</span> Start Focus
+      </button>
+      <button class="control-btn secondary hidden" id="pauseBtn">
+        <span>⏸</span> Pause
+      </button>
+      <button class="control-btn secondary hidden" id="resumeBtn">
+        <span>▶</span> Resume
+      </button>
+      <button class="control-btn danger hidden" id="stopBtn">
+        <span>⏹</span> Stop
+      </button>
+    </div>
+
+    <!-- Stats Summary -->
+    <div class="stats-summary" id="statsSummary">
+      <div class="stat-item">
+        <div class="stat-value" id="totalSessions">0</div>
+        <div class="stat-label">Sessions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="totalTime">0h</div>
+        <div class="stat-label">Total Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="distractions">0</div>
+        <div class="stat-label">Distractions</div>
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <footer class="footer">
+      <a href="#" id="dashboardLink">📊 Dashboard</a>
+      <a href="#" id="settingsLink">⚙️ Settings</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

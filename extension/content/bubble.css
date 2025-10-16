@@ -1,0 +1,72 @@
+/**
+ * FocusBubble Floating Bubble Styles
+ *
+ * Minimal, non-intrusive bubble design
+ * Cloud/bubble themed with soft gradients
+ */
+
+/* Animation keyframes */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 48px rgba(102, 126, 234, 0.5);
+  }
+}
+
+/* Main bubble container */
+.focusbubble-floating {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* When timer is running */
+.focusbubble-floating.running {
+  animation: float-gentle 3s ease-in-out infinite,
+             pulse-glow 2s ease-in-out infinite;
+}
+
+/* Hover state */
+.focusbubble-floating:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Dragging state */
+.focusbubble-floating.dragging {
+  transition: none !important;
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Minimized state */
+.focusbubble-floating.minimized {
+  width: 60px !important;
+  height: 60px !important;
+  opacity: 0.6 !important;
+}
+
+.focusbubble-floating.minimized #focusbubble-timer {
+  font-size: 14px !important;
+}
+
+/* Ensure bubble is always on top and doesn't interfere with page */
+#focusbubble-overlay {
+  pointer-events: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent text selection while dragging */
+#focusbubble-overlay * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}

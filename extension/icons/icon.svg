@@ -1,0 +1,30 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bubbleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer circle with gradient -->
+  <circle cx="64" cy="64" r="60" fill="url(#bubbleGradient)" />
+
+  <!-- Inner white circle -->
+  <circle cx="64" cy="64" r="48" fill="white" />
+
+  <!-- Timer arc (quarter circle representing 25% progress) -->
+  <path d="M 64 16 A 48 48 0 0 1 112 64"
+        fill="none"
+        stroke="#667eea"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+  <!-- Center dot (timer center) -->
+  <circle cx="64" cy="64" r="4" fill="#667eea" />
+
+  <!-- Hour hand pointing up (12 o'clock) -->
+  <line x1="64" y1="64" x2="64" y2="32"
+        stroke="#667eea"
+        stroke-width="3"
+        stroke-linecap="round"/>
+</svg>

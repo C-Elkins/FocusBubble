@@ -1,0 +1,46 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main Bubble Circle with Gradient -->
+  <defs>
+    <linearGradient id="bubbleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Outer Glow Circle -->
+  <circle cx="100" cy="100" r="85" fill="url(#bubbleGradient)" opacity="0.2" filter="url(#glow)"/>
+  
+  <!-- Main Bubble -->
+  <circle cx="100" cy="100" r="70" fill="url(#bubbleGradient)" opacity="0.9"/>
+  
+  <!-- Glass Shine Effect -->
+  <ellipse cx="75" cy="75" rx="25" ry="35" fill="white" opacity="0.3" transform="rotate(-30 75 75)"/>
+  
+  <!-- Timer Icon in Center -->
+  <circle cx="100" cy="100" r="45" fill="white" opacity="0.95"/>
+  
+  <!-- Clock Face -->
+  <circle cx="100" cy="100" r="38" stroke="#6366f1" stroke-width="3" fill="none"/>
+  
+  <!-- Hour Hand -->
+  <line x1="100" y1="100" x2="100" y2="75" stroke="#6366f1" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Minute Hand -->
+  <line x1="100" y1="100" x2="120" y2="100" stroke="#a855f7" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Center Dot -->
+  <circle cx="100" cy="100" r="5" fill="#6366f1"/>
+  
+  <!-- Small Floating Bubbles -->
+  <circle cx="45" cy="45" r="8" fill="#ec4899" opacity="0.6"/>
+  <circle cx="155" cy="155" r="6" fill="#a855f7" opacity="0.6"/>
+  <circle cx="150" cy="50" r="7" fill="#6366f1" opacity="0.6"/>
+</svg>

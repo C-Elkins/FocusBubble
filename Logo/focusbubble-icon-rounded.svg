@@ -1,0 +1,31 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded Square Icon (iOS/Android style) -->
+  <defs>
+    <linearGradient id="roundedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded Rectangle Background -->
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#roundedGradient)"/>
+  
+  <!-- Glass Shine -->
+  <ellipse cx="45" cy="45" rx="20" ry="28" fill="white" opacity="0.2" transform="rotate(-30 45 45)"/>
+  
+  <!-- Timer Circle -->
+  <circle cx="64" cy="64" r="38" fill="white" opacity="0.95"/>
+  <circle cx="64" cy="64" r="30" stroke="#6366f1" stroke-width="4" fill="none"/>
+  
+  <!-- Clock Hands -->
+  <line x1="64" y1="64" x2="64" y2="43" stroke="#6366f1" stroke-width="5.5" stroke-linecap="round"/>
+  <line x1="64" y1="64" x2="82" y2="64" stroke="#a855f7" stroke-width="4.5" stroke-linecap="round"/>
+  
+  <!-- Center Dot -->
+  <circle cx="64" cy="64" r="4.5" fill="#6366f1"/>
+  
+  <!-- Decorative mini bubbles -->
+  <circle cx="30" cy="30" r="5" fill="white" opacity="0.4"/>
+  <circle cx="98" cy="98" r="4" fill="white" opacity="0.4"/>
+</svg>

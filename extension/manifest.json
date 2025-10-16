@@ -1,0 +1,81 @@
+{
+  "manifest_version": 3,
+  "name": "FocusBubble",
+  "version": "1.0.0",
+  "description": "Distraction-aware focus timer with AI-powered insights. Stay focused, track distractions, and improve productivity.",
+  "author": "Chase Elkins",
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "FocusBubble - Start Focus Session"
+  },
+
+  "background": {
+    "scripts": ["background/service-worker.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"],
+      "css": ["content/bubble.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "https://api.anthropic.com/*",
+    "https://api.openai.com/*"
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*", "popup/*", "dashboard/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "options_page": "dashboard/dashboard.html",
+
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F"
+      },
+      "description": "Open FocusBubble popup"
+    },
+    "start_timer": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Start/pause focus timer"
+    },
+    "open_dashboard": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D",
+        "mac": "Command+Shift+D"
+      },
+      "description": "Open FocusBubble dashboard"
+    }
+  }
+}
